@@ -1,28 +1,36 @@
-var https = require('https');
-var fs = require('fs');
+/** This is a Car class */
+class Car{
+	/**
+	* Create a car.
+	* @param {number} wheels - The number of wheels
+	* @param {string} color - The color of the car
+	*/
+	constructor(wheels, color) {
+		/** @public */
+		this.wheels = wheels;
+		/** @public */
+		this.color = color;
+		/** @public */
+		this.miles = 0;
+	}
 
-var google = 'https://www.google.com';
-var yahoo = 'https://www.yahoo.com';
+	/**
+	* Drives the car
+	* @param {number} miles - The number of miles to drive the car
+	* @returns {number} The total number of miles driven by the car
+	*/
+	drive(miles) {
+		this.miles += miles;
+		return this.miles;
+	}
 
-var getWebsite = function (website, callback) {
-	https.get(website, function (res) {
-		var site = "";
-
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-			site += chunk;
-		});
-
-		res.on('end', function () {
-			callback(site);
-		});
-	});
-};
-
-var saveToFile = function (filename) {
-	return function (site) {
-		fs.writeFileSync(filename, site);
-	};
-};
-
-getWebsite(google, saveToFile('text.txt'));
+	/**
+	* Changes the color of the car to the new color
+	* @param {string} newColor - The new color of the car
+	* @returns {string} The color of the car after this function is called
+	*/
+	recolor(newColor) {
+		this.color = newColor;
+		return this.color;
+	}
+}
