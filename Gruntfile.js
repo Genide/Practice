@@ -21,5 +21,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('default', ['jsdoc:doc'])
-  grunt.registerTask('doc', ['shell:update_doc']);
+  grunt.registerTask('update_doc', ['shell:update_doc']);
 }
