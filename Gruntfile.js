@@ -2,10 +2,10 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jsdoc: {
-      dist: {
+      doc: {
         src: ['index.js'],
         options: {
-          destination: './',
+          destination: 'doc/',
           readme : 'README.md',
           template : 'node_modules/ink-docstrap/template',
           configure : 'conf.json'
@@ -13,17 +13,11 @@ module.exports = function (grunt) {
       }
     },
     shell: {
-      'updateDoc': {
-        command: [
-          'git checkout gh-pages',
-          'git merge master'
-        ].join('&&')
-      }
     }
   });
 
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('doc', ['shell:updateDoc','jsdoc']);
+  grunt.registerTask('doc', ['jsdoc']);
 }
