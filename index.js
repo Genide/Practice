@@ -12,6 +12,8 @@ class Car{
 		this.color = color;
 		/** @public */
 		this.miles = 0;
+		/** @public */
+		this.name;
 	}
 
 	/**
@@ -32,5 +34,15 @@ class Car{
 	recolor(newColor) {
 		this.color = newColor;
 		return this.color;
+	}
+
+	/**
+	 * Changes the name of the car
+	 * @param {string} newName - The new name of the car
+	 * @returns {string} The new name of the car
+	 */
+	rename(newName) {
+		this.name = newName;
+		return this.name;
 	}
 }
