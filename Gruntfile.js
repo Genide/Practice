@@ -13,6 +13,7 @@ module.exports = function (grunt) {
       }
     },
     shell: {
+      update_doc: "git subtree push --prefix doc origin gh-pages"
     }
   });
 
@@ -20,4 +21,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('doc', ['jsdoc']);
+  grunt.registerTask('update_doc', ['shell:update_doc']);
 }
