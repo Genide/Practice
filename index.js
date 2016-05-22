@@ -1,28 +1,28 @@
-// TODO: Use callbacks in getting a webpage.
 var https = require('https');
+var fs = require('fs');
 
-var google = "www.google.com";
-var epic = "www.epic.com";
-var yahoo = "www.yahoo.com";
-var duckduckgo = "duckduckgo.com"
+var google = 'https://www.google.com';
+var yahoo = 'https://www.yahoo.com';
 
-var printSite = function (hostname, callback) {
-	var site = "";
-	var options = {
-		// protocol: "https:",
-		'hostname': hostname
-	};
-	var req = https.request(options, (res) => {
-		res.on('data', (chunk) => {
+var getWebsite = function (website, callback) {
+	https.get(website, function (res) {
+		var site = "";
+
+		res.setEncoding('utf8');
+		res.on('data', function (chunk) {
 			site += chunk;
-		}).on ('end', () => {
+		});
+
+		res.on('end', function () {
 			callback(site);
 		});
-	}).on ('error', (err) => {
-		console.log(err);
 	});
-
-	req.end();
 };
 
-printSite(duckduckgo, (site) => console.log(site));
+var saveToFile = function (filename) {
+	return function (site) {
+		fs.writeFileSync(filename, site);
+	};
+};
+
+getWebsite(google, saveToFile('text.txt'));
