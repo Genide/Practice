@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jsdoc: {
       doc: {
-        src: ['index.js'],
+        src: ['src/'],
         options: {
           destination: 'doc/',
           readme : 'README.md',
